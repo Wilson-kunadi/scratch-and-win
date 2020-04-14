@@ -159,6 +159,17 @@ class _scratch_and_winState extends State<scratch_and_win> {
               ),
             ),
           ),
+          Container(
+            color: Colors.black,
+            child: Text(
+              "LearnCodeonline.in",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          )
         ],
       ),
     );
