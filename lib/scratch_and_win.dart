@@ -17,6 +17,12 @@ class _scratch_and_winState extends State<scratch_and_win> {
   String msg;
   bool winAlready;
 
+  // Future to pause
+  Future resetAfterPause() async {
+    await Future.delayed(Duration(seconds: 2));
+    this.resetGame();
+  }
+
   // TODO: get an Array
   List<String> gameState;
 
@@ -39,7 +45,7 @@ class _scratch_and_winState extends State<scratch_and_win> {
   }
 
   // TODO: Define playGame method
-  playGame(int arrayNumber) {
+  playGame(int arrayNumber) async {
     if ((this.timePressed < 5) && (this.winAlready == false)) {
       if (this.gameState[arrayNumber] == "circle") {
         if (arrayNumber == this.rd) {
@@ -47,6 +53,7 @@ class _scratch_and_winState extends State<scratch_and_win> {
             this.gameState[arrayNumber] = "jackpot";
             this.msg = "You Win";
             this.winAlready = true;
+            this.resetAfterPause();
           });
         } else {
           setState(() {
@@ -60,6 +67,7 @@ class _scratch_and_winState extends State<scratch_and_win> {
     if (this.timePressed >= 5) {
       setState(() {
         this.msg = "You Lose";
+        this.resetAfterPause();
       });
     }
   }
